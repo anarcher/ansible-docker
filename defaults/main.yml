@@ -1,0 +1,7 @@
+---
+docker:
+    version: ""
+    opts: ""
+    users: 
+        - "ubuntu"
+

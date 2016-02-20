@@ -1,0 +1,45 @@
+---
+
+- name: Add docker apt repository
+  apt_repository:
+     repo='deb https://apt.dockerproject.org/repo ubuntu-{{ ansible_distribution_release }} main'
+     state=present
+- name: Add docker apt key
+  apt_key:
+     url=https://apt.dockerproject.org/gpg
+     state=present
+     id=2C52609D
+- name: Install docker engine
+  apt:
+    name=docker-engine{{ "="+docker.version+"*" | default("") }}
+    update_cache=yes
+    cache_valid_time=86400
+- name: Add a docker group
+  group:
+    name=docker
+    state=present
+- name: Add user(s) to docker group
+  user: 
+      name={{ item }} 
+      group=docker 
+      state=present
+  with_items: docker.users
+  when: docker.users is defined
+- name: Configure Docker 
+  template: 
+      src=default_docker.j2 
+      dest=/etc/default/docker 
+      mode=0644 
+      owner=root 
+      group=root
+  notify: restart docker
+- name: Configure logrotate for docker json log
+  logrotate: name=docker-log path=/var/lib/docker/containers/*/*.log
+  args:
+    options:
+      - daily
+      - size 200M
+      - rotate 3 
+      - missingok
+      - copytruncate
+
