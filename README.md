@@ -1,4 +1,5 @@
-# Docker role
+Docker role [![ansible role](https://img.shields.io/badge/ansible-role-orange.svg)]()
+-----------
 
 Installs Docker.
 
