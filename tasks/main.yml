@@ -13,7 +13,7 @@
      id=2C52609D
 - name: Install docker engine
   apt:
-    name=docker-engine{{ "="+docker.version+"*" | default("") }}
+    name=docker-engine{{ "="+docker_version+"*" | default("") }}
     update_cache=yes
     cache_valid_time=86400
 - name: Add a docker group
@@ -25,8 +25,8 @@
       name={{ item }} 
       group=docker 
       state=present
-  with_items: docker.users
-  when: docker.users is defined
+  with_items: docker_users
+  when: docker_users is defined
 - name: Configure Docker 
   template: 
       src=default_docker.j2 

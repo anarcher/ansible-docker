@@ -1,6 +1,6 @@
 # Docker Upstart and SysVinit configuration file
 
 # Use DOCKER_OPTS to modify the daemon startup options.
-{% if docker.opts is defined %}
-DOCKER_OPTS="{{ docker.opts | join(' ')}}"
+{% if docker_opts is defined or docker_labels is defined  %}
+DOCKER_OPTS="{{ docker_opts | default([]) | join(' ')}} {{ docker_labels | default([]) | join(' --label ') }} "
 {% endif %}

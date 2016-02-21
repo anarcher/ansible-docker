@@ -12,16 +12,16 @@ This role requires Ansible 1.4 or higher.
 
 | Name           | Default | Description |
 |----------------|---------|-------------|
-| docker.version | none    |             |
-| docker.opts    | none    |             |
-| docker.users   | ubuntu  |             |
+| docker_version | none    |             |
+| docker_opts    | none    |             |
+| docker_users   | ubuntu  |             |
+| docker_labels  |         |             |
 
 ```
-docker:
-    version: ""
-    opts: ""
-    users:
-        - "ubuntu"
+docker_version:
+docker_opts:
+docker_labels: []
+docker_users: []
 ```
 
 ## Dependencies
