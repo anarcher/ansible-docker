@@ -2,5 +2,5 @@
 
 # Use DOCKER_OPTS to modify the daemon startup options.
 {% if docker_opts is defined or docker_labels is defined  %}
-DOCKER_OPTS="{{ docker_opts | default([]) | join(' ')}} {{ docker_labels | default([]) | join(' --label ') }} "
+DOCKER_OPTS="{% if docker_opts %}{{ docker_opts | join(' ')}}{% endif %}{% if docker_labels %} --label {{ docker_labels | join(' --label ') }}{% endif %}"
 {% endif %}

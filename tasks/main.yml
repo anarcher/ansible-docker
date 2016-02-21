@@ -13,7 +13,7 @@
      id=2C52609D
 - name: Install docker engine
   apt:
-    name=docker-engine{{ "="+docker_version+"*" | default("") }}
+    name="docker-engine{% if docker_version %}={{ docker_version }}*{% endif %}" 
     update_cache=yes
     cache_valid_time=86400
 - name: Add a docker group
