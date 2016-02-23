@@ -1,4 +1,13 @@
 ---
+- name: Add linux-image-extra package (for AUFS)
+  apt: name="linux-image-extra-{{ ansible_kernel }}"
+    update_cache=yes
+    cache_valid_time=86400
+
+- name: Add linux-image-extra-virtual package (for AUFS)
+  apt: name="linux-image-extra-virtual"
+    update_cache=yes
+    cache_valid_time=86400
 
 - name: Add docker apt repository
   apt_repository:
