@@ -3,4 +3,5 @@ docker_version:
 docker_opts:
 docker_labels: []
 docker_users: []
+docker_registries: []
 

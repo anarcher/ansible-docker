@@ -16,12 +16,14 @@ This role requires Ansible 1.4 or higher.
 | docker_opts    | none    |             |
 | docker_users   | ubuntu  |             |
 | docker_labels  |         |             |
+| docker_registries  |         | { "host" : "<host>", "auth" : "<auth>" , "email" : "<email" } |
 
 ```
 docker_version:
 docker_opts:
 docker_labels: []
 docker_users: []
+docker_registries: []
 ```
 
 ## Dependencies
